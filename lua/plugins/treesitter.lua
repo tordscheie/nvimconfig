@@ -1,18 +1,16 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
-    config = function()
-
-  	local configs = require("nvim-treesitter.configs")
-
-
-      	configs.setup({
-	  auto_install = true,
-          highlight = { enable = true },
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	build = ":TSUpdate",
+	config = function()
+		-- You must call setup on the configurations module
+		require("nvim-treesitter.configs").setup({
+			-- Pass your languages as a list to ensure_installed
+			ensure_installed = { "c", "python", "lua" },
+			-- Enable syntax highlighting (highly recommended)
+			highlight = {
+				enable = true,
+			},
 		})
-
-
-    end
+	end,
 }
